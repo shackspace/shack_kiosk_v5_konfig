@@ -15,3 +15,5 @@ Contains the modified touch driver with adjustments to NixOS.
 `eGTouch_v2.5.6722.L-x.tar.gz` is the original driver.
 
 Modifications are done with `patchelf` to set a fitting *rpath* and SO *interpreter*.
+
+Source for the driver: http://www.eeti.com/drivers_Linux.html
