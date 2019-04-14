@@ -9,4 +9,9 @@ font pango:monospace 10
 exec chromium --kiosk --incognito --disable-web-security --user-data-dir="/home/shack/chromedata" --app=file:///home/shack/kiosk_v4/index.html
 
 # Disable display power manangement (screen won't shut off)
+exec xset dpms 0 0
 exec xset -dpms
+
+# Disable screen saver
+exec xset s 0 0
+exec xset s off
