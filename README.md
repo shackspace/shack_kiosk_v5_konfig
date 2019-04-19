@@ -17,3 +17,4 @@ Contains the modified touch driver with adjustments to NixOS.
 Modifications are done with `patchelf` to set a fitting *rpath* and SO *interpreter*.
 
 Source for the driver: http://www.eeti.com/drivers_Linux.html
+
