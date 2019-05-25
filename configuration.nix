@@ -63,12 +63,7 @@
     alsaLib
 
     # dependencies for kiosk
-    libgnurl
     chromium
-    mesa
-    SDL2
-    SDL2_image
-    SDL2_mixer
     xdotool
   ];
 
@@ -124,7 +119,6 @@
    wantedBy = [ "multi-user.target" ];
  };
  systemd.services.gtouchd.enable = true;
-
 
   services.xserver.displayManager.lightdm = {
     enable = true;

@@ -97,7 +97,7 @@ HTTP-Put
 
 ```json
 {
-	"state", "on"
+	"state": "on"
 }
 ```
 
@@ -116,3 +116,5 @@ function gobbelz(text)
 }
 ```
 
+## Volumio
+https://volumio.github.io/docs/API/REST_API.html
