@@ -123,3 +123,5 @@ https://volumio.github.io/docs/API/REST_API.html
 http://radioactiveathome.org/scripts/graph/drawweekdotted.php?hostid=14364
 
 ![](http://radioactiveathome.org/scripts/graph/drawweekdotted.php?hostid=14364)
+
+https://github.com/makefu/nagios-radioactiveathome-plugins/blob/master/legacy/current_geiger.sh
