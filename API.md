@@ -118,3 +118,8 @@ function gobbelz(text)
 
 ## Volumio
 https://volumio.github.io/docs/API/REST_API.html
+
+## Radioaktivität
+http://radioactiveathome.org/scripts/graph/drawweekdotted.php?hostid=14364
+
+![](http://radioactiveathome.org/scripts/graph/drawweekdotted.php?hostid=14364)
