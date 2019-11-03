@@ -90,6 +90,9 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
+  
+  # Enable Bluetooth
+  hardware.bluetooth.enable = true;
 
   # Enable sound.
   sound.enable = true;
@@ -102,6 +105,13 @@
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
+
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
+      "@reboot	root	/home/shack/BtClock-Set/BtClock-Set.sh 3212"	
+    ];
+  };
 
   systemd.services.gtouchd = {
    description = "eGalax Touch Daemon";
