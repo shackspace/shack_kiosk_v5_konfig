@@ -65,6 +65,12 @@
     # dependencies for kiosk
     chromium
     xdotool
+
+    # dependencies for btclock-set and btclock-api
+    bluez
+    bluez-tools
+    nodejs-10_x
+    python
   ];
 
   # Important
@@ -90,7 +96,7 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-  
+
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
 
@@ -109,26 +115,54 @@
   services.cron = {
     enable = true;
     systemCronJobs = [
-      "@reboot	root	/home/shack/BtClock-Set/BtClock-Set.sh 3212"	
+      "@reboot	root	/home/shack/btclock-set/BtClock-Set.sh 3212"
     ];
   };
 
+  systemd.services.btclockapi_readonly = {
+    description = "BtClock node api port 80 - readonly";
+    serviceConfig = {
+	Type="simple";
+	User="root";
+	Group="root";
+	Environment="NODE_ENV=production";
+	WorkingDirectory="/home/shack/btclock-api";
+	ExecStart="${pkgs.nodejs-10_x}/bin/node server.js --port 80 --readonly";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+  systemd.services.btclockapi_readonly.enable = true;
+
+  systemd.services.btclockapi_localhost = {
+    description = "BtClock node api localhost port 8080";
+    serviceConfig = {
+	Type="simple";
+	User="root";
+	Group="root";
+	Environment="NODE_ENV=production";
+	WorkingDirectory="/home/shack/btclock-api";
+	ExecStart="${pkgs.nodejs-10_x}/bin/node server.js --host localhost --port 8080";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+  systemd.services.btclockapi_localhost.enable = true;
+
   systemd.services.gtouchd = {
-   description = "eGalax Touch Daemon";
-   serviceConfig = {
+    description = "eGalax Touch Daemon";
+    serviceConfig = {
 	Type="forking";
 	User="root";
 	Group="root";
 	ExecStart="/home/shack/touch-driver/eGTouchD start";
 	ExecReload="/home/shack/touch-driver/eGTouchD restart";
 	ExecStop="/home/shack/touch-driver/eGTouchD stop";
-   };
-   unitConfig = {
+    };
+    unitConfig = {
 	SourcePath="/home/shack/eGTouch_v2.5.6722.L-x/eGTouch64/eGTouch64withX/eGTouchD";
-   };
-   wantedBy = [ "multi-user.target" ];
- };
- systemd.services.gtouchd.enable = true;
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+  systemd.services.gtouchd.enable = true;
 
   services.xserver.displayManager.lightdm = {
     enable = true;
@@ -179,12 +213,12 @@
 	''
 	];
 
-environment.etc ={
-"eGTouchL.ini" = {
+  environment.etc ={
+    "eGTouchL.ini" = {
       source = "/home/shack/touch-driver/eGTouchL.ini";
       mode = "0666";
     };
-};
+  };
 
   hardware.opengl.enable = true;
 
@@ -205,3 +239,4 @@ environment.etc ={
   system.stateVersion = "19.03"; # Did you read the comment?
 
 }
+
