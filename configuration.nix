@@ -105,15 +105,29 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+	enable = true;
+  	systemWide = true;
+	tcp = {
+		enable = true;
+		anonymousClients.allowAll = true;
+		
+	};
+	zeroconf.publish.enable = true;
+	zeroconf.discovery.enable = true;
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "de";
   # services.xserver.xkbOptions = "eurosign:e";
 
+  # nixpkgs.config.allowUnfree = true;
+  services.xserver.videoDrivers = [ "ati" ];
+
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
+
 
   services.cron = {
     enable = true;
@@ -224,6 +238,8 @@
   };
 
   hardware.opengl.enable = true;
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
 
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
@@ -232,7 +248,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.shack = {
      isNormalUser = true;
-     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+     extraGroups = [ "audio" "wheel" ]; # Enable ‘sudo’ for the user.
   };
 
   # This value determines the NixOS release with which your system is to be
