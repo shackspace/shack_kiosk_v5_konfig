@@ -232,6 +232,7 @@
 	];
   
   # reduce the power consumption for the kiosk from 70W to 45W when not used
+  environment.variables.SDL_VIDEO_ALLOW_SCREENSAVER=1
   services.xserver.serverFlagsSection =
     ''
     Option "BlankTime" "5"
