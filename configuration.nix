@@ -230,6 +230,15 @@
 		Option  "SwapAxes"  "1"
 	''
 	];
+  
+  # reduce the power consumption for the kiosk from 70W to 45W when not used
+  services.xserver.serverFlagsSection =
+    ''
+    Option "BlankTime" "5"
+    Option "StandbyTime" "5"
+    Option "SuspendTime" "5"
+    Option "OffTime" "5"
+    '';
 
   environment.etc ={
     "eGTouchL.ini" = {
