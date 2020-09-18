@@ -85,6 +85,9 @@
 
   # List services that you want to enable:
 
+  # currently the hostname lounge.kiosk.shack is unknown to the dns server
+  services.avahi.hostName = "kiosk";
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
